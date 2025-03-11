@@ -6,8 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Middleware\CheckUserName;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [HomeController::class, 'index'])
-    ->middleware(CheckUserName::class);
+Route::get('/dashboard', [HomeController::class, 'dashboard']);
 
 // Route::prefix('/users')->name('users.')->middleware(CheckUserName::class)
 //     ->group(function () {
@@ -21,3 +20,7 @@ Route::get('/', [HomeController::class, 'index'])
 
 Route::resource('users', UserController::class);
 Route::resource('products', ProductController::class);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
