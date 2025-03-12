@@ -15,10 +15,6 @@
     <link rel="stylesheet" href="{{ asset('admin-dist/dist/css/adminlte.min.css') }}">
     <!-- iCheck -->
     <link rel="stylesheet" href="{{ asset('admin-dist/plugins/iCheck/flat/blue.css') }}">
-    <!-- Morris chart -->
-    <link rel="stylesheet" href="{{ asset('admin-dist/plugins/morris/morris.css') }}">
-    <!-- jvectormap -->
-    <link rel="stylesheet" href="{{ asset('admin-dist/plugins/jvectormap/jquery-jvectormap-1.2.2.css') }}">
     <!-- Date Picker -->
     <link rel="stylesheet" href="{{ asset('admin-dist/plugins/datepicker/datepicker3.css') }}">
     <!-- Daterange picker -->
@@ -69,14 +65,8 @@
     </script>
     <!-- Bootstrap 4 -->
     <script src="{{ asset('admin-dist/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <!-- Morris.js charts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-    <script src="{{ asset('admin-dist/plugins/morris/morris.min.js') }}"></script>
     <!-- Sparkline -->
     <script src="{{ asset('admin-dist/plugins/sparkline/jquery.sparkline.min.js') }}"></script>
-    <!-- jvectormap -->
-    <script src="{{ asset('admin-dist/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js') }}"></script>
-    <script src="{{ asset('admin-dist/plugins/jvectormap/jquery-jvectormap-world-mill-en.js') }}"></script>
     <!-- jQuery Knob Chart -->
     <script src="{{ asset('admin-dist/plugins/knob/jquery.knob.js') }}"></script>
     <!-- daterangepicker -->
