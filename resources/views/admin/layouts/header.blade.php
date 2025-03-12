@@ -15,8 +15,7 @@
     <!-- SEARCH FORM -->
     <form class="form-inline ml-3">
         <div class="input-group input-group-sm">
-            <input class="form-control form-control-navbar" type="search" placeholder="جستجو"
-                aria-label="Search">
+            <input class="form-control form-control-navbar" type="search" placeholder="جستجو" aria-label="Search">
             <div class="input-group-append">
                 <button class="btn btn-navbar" type="submit">
                     <i class="fa fa-search"></i>
@@ -37,7 +36,7 @@
                 <a href="#" class="dropdown-item">
                     <!-- Message Start -->
                     <div class="media">
-                        <img src="dist/img/user1-128x128.jpg" alt="User Avatar"
+                        <img src="{{ asset('admin-dist/dist/img/user1-128x128.jpg') }}" alt="User Avatar"
                             class="img-size-50 ml-3 img-circle">
                         <div class="media-body">
                             <h3 class="dropdown-item-title">
@@ -54,7 +53,7 @@
                 <a href="#" class="dropdown-item">
                     <!-- Message Start -->
                     <div class="media">
-                        <img src="dist/img/user8-128x128.jpg" alt="User Avatar"
+                        <img src="{{ asset('admin-dist/dist/img/user1-128x128.jpg') }}" alt="User Avatar"
                             class="img-size-50 img-circle ml-3">
                         <div class="media-body">
                             <h3 class="dropdown-item-title">
@@ -71,7 +70,7 @@
                 <a href="#" class="dropdown-item">
                     <!-- Message Start -->
                     <div class="media">
-                        <img src="dist/img/user3-128x128.jpg" alt="User Avatar"
+                        <img src="{{ asset('admin-dist/dist/img/user1-128x128.jpg') }}" alt="User Avatar"
                             class="img-size-50 img-circle ml-3">
                         <div class="media-body">
                             <h3 class="dropdown-item-title">
