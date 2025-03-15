@@ -68,7 +68,7 @@
                         <img src="{{ asset('book-dist/image/book-6.png') }}" alt="">
                     </a>
                 </div>
-                <img src="image/stand.png" class="stand" alt="">
+                <img src="{{ asset('book-dist/image/stand.png') }}" class="stand" alt="">
             </div>
 
         </div>

@@ -35,7 +35,7 @@
             <a href="#"> <i class="fas fa-phone"></i> +123-456-7890 </a>
             <a href="#"> <i class="fas fa-phone"></i> +111-222-3333 </a>
             <a href="#"> <i class="fas fa-envelope"></i> admin@netcopy.ir </a>
-            <img src="image/worldmap.png" class="map" alt="">
+            <img src="{{ asset('book-dist/image/worldmap.png') }}" class="map" alt="">
         </div>
 
     </div>

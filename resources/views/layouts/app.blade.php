@@ -35,7 +35,7 @@
     <!-- loader  -->
 
     <div class="loader-container">
-        <img src="image/loader-img.gif" alt="">
+        <img src="{{ asset('book-dist/image/loader-img.gif') }}" alt="">
     </div>
 
     <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
