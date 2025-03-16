@@ -48,16 +48,18 @@
                                         <th>قیمت</th>
                                         <th>موجودی</th>
                                         <th>تاریخ</th>
+                                        <th>درج کننده</th>
                                         <th>عملیات</th>
                                     </tr>
                                     @foreach ($products as $product)
                                         <tr>
                                             <td>{{ $loop->index + 1 }}</td>
                                             <td>{{ $product->name }}</td>
-                                            <td>-</td>
+                                            <td>{{$product->category->name}}</td>
                                             <td>{{ number_format($product->price) }}</td>
                                             <td>{{ number_format($product->stock) }}</td>
                                             <td>{{ $product->created_at }}</td>
+                                            <td>{{$product->user->name}}</td>
                                             <td>
                                                 @if ($product->trashed())
                                                     <a class="btn btn-warning restore-item"
