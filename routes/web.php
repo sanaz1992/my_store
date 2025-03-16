@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
@@ -25,5 +26,8 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
 
     Route::resource('categories', CategoryController::class);
     Route::post('/categories/{category}/restore', [CategoryController::class, 'restore'])->name('categories.restore');
+
+    Route::resource('products', AdminProductController::class);
+    Route::post('/products/{product}/restore', [AdminProductController::class, 'restore'])->name('products.restore');
 
 });
