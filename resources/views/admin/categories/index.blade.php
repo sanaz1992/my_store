@@ -2,10 +2,6 @@
 
 @section('title', 'لیست گروهبندی ها')
 
-@section('script')
-    <script src="{{ asset('admin-dist/js/form-scripts.js') }}"></script>
-@endsection
-
 @section('content-header')
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -36,6 +32,10 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title"> لیست گروهبندی ها</h3>
+                            <div class="card-tools">
+                                <a class="float-left btn btn-danger"
+                                    href="{{ route('admin.categories.index', ['type' => 'deleted']) }}">لیست حذف شده ها</a>
+                            </div>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body table-responsive p-0">
@@ -53,10 +53,16 @@
                                             <td>{{ $category->name }}</td>
                                             <td>{{ $category->created_at }}</td>
                                             <td>
-                                                <a class="btn btn-primary"
-                                                    href="{{ route('admin.categories.edit', $category) }}">ویرایش</a>
-                                                <a class="btn btn-danger delete-item"
-                                                    href="{{ route('admin.categories.destroy', $category) }}">حذف</a>
+                                                @if ($category->trashed())
+                                                    <a class="btn btn-warning restore-item"
+                                                        href="{{ route('admin.categories.restore', $category) }}">بازگرداندن</a>
+                                                @else
+                                                    <a class="btn btn-primary"
+                                                        href="{{ route('admin.categories.edit', $category) }}">ویرایش</a>
+
+                                                    <a class="btn btn-danger delete-item"
+                                                        href="{{ route('admin.categories.destroy', $category) }}">حذف</a>
+                                                @endif
                                             </td>
                                         </tr>
                                     @endforeach

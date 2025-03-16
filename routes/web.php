@@ -19,7 +19,11 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
     Route::resource('users', AdminUserController::class);
+    Route::post('/users/{user}/restore', [AdminUserController::class, 'restore'])->name('users.restore');
+
     Route::resource('categories', CategoryController::class);
+    Route::post('/categories/{category}/restore', [CategoryController::class, 'restore'])->name('categories.restore');
 
 });

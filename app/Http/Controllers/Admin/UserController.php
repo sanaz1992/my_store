@@ -4,15 +4,22 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::latest()->get();
+        $data = $request->all();
+        if (isset($data['type']) && $data['type'] == "deleted") {
+            $users = User::onlyTrashed()->latest()->get();
+        } else {
+            $users = User::latest()->get();
+        }
+
         return view('admin.users.index', compact('users'));
     }
 
@@ -29,7 +36,13 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        $data = $request->all();
+        User::create([
+            'name'     => $data['name'],
+            'email'    => $data['email'],
+            'password' => Hash::make($data['password']),
+        ]);
+        return redirect()->back()->with('message', 'اطلاعات با موفقیت ثبت شد');
     }
 
     /**
@@ -43,25 +56,48 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(User $user)
     {
-        $user = User::find($id);
         return view('admin.users.edit', compact('user'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, User $user)
     {
-        dd($request->all());
+        $data        = $request->all();
+        $user->name  = $data['name'];
+        $user->email = $data['email'];
+        if (isset($data['password'])) {
+            $user->password = Hash::make($data['password']);
+        }
+        $user->save();
+        return redirect()->back()->with('message', 'اطلاعات با موفقیت ویرایش شد.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(User $user)
     {
-        //
+        $user->delete();
+        return response()->json([
+            'message' => 'اطلاعات با موفقیت حذف شد',
+        ], 200);
+    }
+
+    public function restore($user)
+    {
+        $user = User::onlyTrashed()->where('id', $user)->first();
+        if (! $user) {
+            return response()->json([
+                'message' => 'آیتم مورد نظر یافت نشد',
+            ], 404);
+        }
+        $user->restore();
+        return response()->json([
+            'message' => 'اطلاعات با موفقیت بازیابی شد',
+        ], 200);
     }
 }

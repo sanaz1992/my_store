@@ -7,9 +7,14 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $categories = Category::latest()->get();
+        $data = $request->all();
+        if (isset($data['type']) && $data['type'] == "deleted") {
+            $categories = Category::onlyTrashed()->latest()->get();
+        } else {
+            $categories = Category::latest()->get();
+        }
         return view('admin.categories.index', compact('categories'));
     }
 
@@ -44,5 +49,22 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
+        return response()->json([
+            'message' => 'اطلاعات با موفقیت حذف شد',
+        ], 200);
+    }
+
+    public function restore($category)
+    {
+        $category = Category::onlyTrashed()->where('slug', $category)->first();
+        if (! $category) {
+            return response()->json([
+                'message' => 'آیتم مورد نظر یافت نشد.',
+            ], 404);
+        }
+        $category->restore();
+        return response()->json([
+            'message' => 'اطلاعات با موفقیت بازیابی شد.',
+        ], 200);
     }
 }

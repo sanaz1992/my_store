@@ -96,6 +96,8 @@
     <!-- AdminLTE for demo purposes -->
     <script src="{{ asset('admin-dist/dist/js/demo.js') }}"></script>
 
+    <script src="{{ asset('admin-dist/js/form-scripts.js') }}"></script>
+
     @yield('script')
 </body>
 
