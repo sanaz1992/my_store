@@ -10,6 +10,14 @@ class Product extends Model
     // protected $table="products";
     protected $fillable = ['name', 'image', 'description', 'category_id', 'slug', 'price', 'stock', 'user_id'];
 
+    /**
+     * Get the route key for the model.
+     */
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

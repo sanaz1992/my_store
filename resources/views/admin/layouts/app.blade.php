@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>پنل مدیریت | @yield('title')</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -41,7 +42,15 @@
         @include('admin.layouts.sidebar')
 
         <!-- Content Wrapper. Contains page content -->
-        @yield('content')
+        <div class="content-wrapper" style="min-height: 586.837px;">
+            @yield('content-header')
+            @if (session('message'))
+                <div class="alert alert-success mr-3 ml-3">
+                    {{ session('message') }}
+                </div>
+            @endif
+            @yield('content')
+        </div>
         <!-- /.content-wrapper -->
         <footer class="main-footer">
             <strong>CopyLeft &copy; 2018 <a href="http://github.com/hesammousavi/">حسام موسوی</a>.</strong>
@@ -86,6 +95,8 @@
     <script src="{{ asset('admin-dist/dist/js/pages/dashboard.js') }}"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="{{ asset('admin-dist/dist/js/demo.js') }}"></script>
+
+    @yield('script')
 </body>
 
 </html>

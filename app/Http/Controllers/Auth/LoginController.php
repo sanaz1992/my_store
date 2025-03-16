@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
@@ -25,7 +24,8 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/dashboard';
+    protected $redirectTo      = '/dashboard';
+    protected $redirectToAdmin = '/admin/dashboard';
 
     /**
      * Create a new controller instance.
@@ -38,5 +38,22 @@ class LoginController extends Controller
         $this->middleware('auth')->only('logout');
     }
 
+    /**
+     * Get the post register / login redirect path.
+     *
+     * @return string
+     */
+    public function redirectPath()
+    {
+        if (method_exists($this, 'redirectTo')) {
+            dd('r1');
+            return $this->redirectTo();
+        }
+        if (auth()->user()->role == "admin") {
+            return $this->redirectToAdmin;
+        } else {
+            return property_exists($this, 'redirectTo') ? $this->redirectTo : '/home';
+        }
+    }
 
 }
