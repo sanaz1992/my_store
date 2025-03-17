@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
@@ -30,4 +31,5 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::resource('products', AdminProductController::class);
     Route::post('/products/{product}/restore', [AdminProductController::class, 'restore'])->name('products.restore');
 
+    Route::resource('blogs', BlogController::class);
 });
