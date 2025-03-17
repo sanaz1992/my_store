@@ -43,6 +43,7 @@
                                 <tbody>
                                     <tr>
                                         <th>شماره</th>
+                                        <th>تصویر</th>
                                         <th>عنوان</th>
                                         <th>گروه</th>
                                         <th>قیمت</th>
@@ -54,12 +55,14 @@
                                     @foreach ($products as $product)
                                         <tr>
                                             <td>{{ $loop->index + 1 }}</td>
+                                            <td><img src="{{ asset('storage/' . $product->image) }}"
+                                                    style="max-width: 100px;" /></td>
                                             <td>{{ $product->name }}</td>
-                                            <td>{{$product->category->name}}</td>
+                                            <td>{{ $product->category->name }}</td>
                                             <td>{{ number_format($product->price) }}</td>
                                             <td>{{ number_format($product->stock) }}</td>
                                             <td>{{ $product->created_at }}</td>
-                                            <td>{{$product->user->name}}</td>
+                                            <td>{{ $product->user->name }}</td>
                                             <td>
                                                 @if ($product->trashed())
                                                     <a class="btn btn-warning restore-item"

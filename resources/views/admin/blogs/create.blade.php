@@ -33,7 +33,7 @@
                     <!-- general form elements -->
                     <div class="card card-primary">
                         <!-- form start -->
-                        <form role="form" action="{{ route('admin.blogs.store') }}" method="post">
+                        <form role="form" action="{{ route('admin.blogs.store') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="card-body">
                                 <div class="form-group">
@@ -52,7 +52,7 @@
                                     <textarea name="description" required class="form-control" id="exampleInputDescription"
                                         placeholder="تصویر را وارد کنید"></textarea>
                                 </div>
-                               
+
                             </div>
                             <!-- /.card-body -->
 

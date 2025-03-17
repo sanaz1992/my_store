@@ -32,7 +32,8 @@
                     <!-- general form elements -->
                     <div class="card card-primary">
                         <!-- form start -->
-                        <form role="form" action="{{ route('admin.users.update', $user) }}" method="post">
+                        <form role="form" action="{{ route('admin.users.update', $user) }}" method="post"
+                            enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="card-body">

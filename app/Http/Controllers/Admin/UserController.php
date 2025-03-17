@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers\Admin;
 
+use App\Helpers\UploadHelper;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -37,9 +38,13 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
+        if ($request->hasFile('image')) {
+            $data['image'] = UploadHelper::uploadImage($request->file('image'), 'user_images');
+        }
         User::create([
             'name'     => $data['name'],
             'email'    => $data['email'],
+            'image'    => $data['image'] ?? null,
             'password' => Hash::make($data['password']),
         ]);
         return redirect()->back()->with('message', 'اطلاعات با موفقیت ثبت شد');
@@ -71,6 +76,11 @@ class UserController extends Controller
         $user->email = $data['email'];
         if (isset($data['password'])) {
             $user->password = Hash::make($data['password']);
+        }
+        if ($request->hasFile('image')) {
+            $imagePath = UploadHelper::uploadImage($request->file('image'), 'user_images');
+            UploadHelper::deleteImage($user->image);
+            $user->image = $imagePath;
         }
         $user->save();
         return redirect()->back()->with('message', 'اطلاعات با موفقیت ویرایش شد.');

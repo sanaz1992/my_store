@@ -41,6 +41,7 @@
                                 <tbody>
                                     <tr>
                                         <th>شماره</th>
+                                        <th>تصویر</th>
                                         <th>کاربر</th>
                                         <th>تاریخ</th>
                                         <th>عملیات</th>
@@ -48,6 +49,8 @@
                                     @foreach ($users as $user)
                                         <tr>
                                             <td>{{ $loop->index + 1 }}</td>
+                                            <td><img src="{{ asset('storage/' . $user->image) }}"
+                                                style="max-width: 100px;" /></td>
                                             <td>{{ $user->name }}</td>
                                             <td>{{ $user->created_at }}</td>
                                             <td>

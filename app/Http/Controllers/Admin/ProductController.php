@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers\Admin;
 
+use App\Helpers\UploadHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
@@ -40,6 +41,9 @@ class ProductController extends Controller
         $data            = $request->all();
         $data['slug']    = Str::slug($data['name']);
         $data['user_id'] = auth()->user()->id;
+        if ($request->hasFile('image')) {
+            $data['image'] = UploadHelper::uploadImage($request->file('image'), 'product_images');
+        }
         Product::create($data);
         return redirect()->back()->with('message', 'اطلاعات با موفقیت ثبت شد.');
     }
@@ -72,6 +76,11 @@ class ProductController extends Controller
         $product->description = $data['description'];
         $product->price       = $data['price'];
         $product->stock       = $data['stock'];
+        if ($request->hasFile('image')) {
+            $imagePath = UploadHelper::uploadImage($request->file('image'), 'product_images');
+            UploadHelper::deleteImage($product->image);
+            $product->image = $imagePath;
+        }
         $product->save();
         return redirect()->back()->with('message', 'اطلاعات با موفقیت ویرایش شد.');
     }

@@ -33,7 +33,8 @@
                     <!-- general form elements -->
                     <div class="card card-primary">
                         <!-- form start -->
-                        <form role="form" action="{{ route('admin.products.store') }}" method="post">
+                        <form role="form" action="{{ route('admin.products.store') }}" method="post"
+                            enctype="multipart/form-data">
                             @csrf
                             <div class="card-body">
                                 <div class="form-group">

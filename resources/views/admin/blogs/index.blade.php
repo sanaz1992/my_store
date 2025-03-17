@@ -39,6 +39,7 @@
                                 <tbody>
                                     <tr>
                                         <th>شماره</th>
+                                        <th>تصویر</th>
                                         <th>عنوان</th>
                                         <th>تاریخ</th>
                                         <th>عملیات</th>
@@ -46,6 +47,8 @@
                                     @foreach ($blogs as $blog)
                                         <tr>
                                             <td>{{ $loop->index + 1 }}</td>
+                                            <td><img src="{{ asset('storage/' . $blog->image) }}"
+                                                    style="max-width: 100px;" /></td>
                                             <td>{{ $blog->name }}</td>
                                             <td>{{ $blog->created_at }}</td>
                                             <td>
