@@ -50,6 +50,11 @@
                                     <input type="password" name="password" class="form-control" id="exampleInputPassword1"
                                         placeholder="پسورد را وارد کنید">
                                 </div>
+                                <div class="form-group">
+                                    <label for="exampleInputImage">تصویر</label>
+                                    <input type="file" name="image" class="form-control" id="exampleInputImage"
+                                        placeholder="تصویر را وارد کنید">
+                                </div>
                             </div>
                             <!-- /.card-body -->
 
